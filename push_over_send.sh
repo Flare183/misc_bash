@@ -1,5 +1,6 @@
 #!/bin/bash
-
+while true
+do
 
 
 load1m=$(uptime | awk '{ print $10 }' | cut -c1-4)
@@ -11,14 +12,9 @@ threshold15m="3.80"
 result1m=$(echo "$load1m > $threshold1m" | bc)
 result10m=$(echo "$load10m > $threshold10m" | bc)
 result15m=$(echo "$load15m > $threshold15m" | bc)
-email="youremail"
-mailbody=$(mktemp)
-send=0
 
 if [ "$result15m" == 1 ]; then
-  msg="Load 15 min: $load15m (threshold $threshold15m)"
-  subject="ALERT: High load 15m ($load15m)"
-  send=1
+  pushover -t Quartz: LoadAvg 1m: '$result1m'
 elif [ "$result10m" == 1 ]; then
   msg="Load 10 min: $load10m (threshold $threshold10m)"
   subject="ALERT: High load 10m ($load10m)"
@@ -28,3 +24,6 @@ elif [ "$result1m" == 1 ]; then
   subject="ALERT: High load 1m ($load1m)"
   send=1
 fi
+done
+
+

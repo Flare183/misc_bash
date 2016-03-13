@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Weather Script
+# Writtten by Jesse N. Richardson (Flare183, negativeflare) [flare183@charter.net]
+
+#watch -c -n 300 curl wttr.in/sawmills
+
+while true
+do
+    curl wttr.in/sawmills
+    sleep 300
+    x=1
+    if [ !x == "1" ]
+	echo "Exiting"
+	then
+	break
+fi
+done

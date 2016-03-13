@@ -8,8 +8,8 @@
 while true
 do
     curl wttr.in/sawmills
-    sleep 300
-    x=1
+    sleep 10
+    x=2
     if [ !x == "1" ]
 	echo "Exiting"
 	then

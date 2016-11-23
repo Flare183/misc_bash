@@ -3,6 +3,8 @@
 # Weather Script
 # Written by Jesse N. Richardson (Flare183, negativeflare) [flare183@charter.net]
 
+# Filename: weather
+
 #watch -c -n 300 curl wttr.in/sawmills
 
 while true
@@ -15,6 +17,6 @@ do
     echo "    "
     echo "    "
     date -R
-    curl wttr.in/sawmills
+    curl wttr.in/seneca_us
     sleep 1200
 done

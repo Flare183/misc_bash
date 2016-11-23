@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Server Startup Script
+# Written by Jesse N. Richardson (Flare183, negativeflare) [flare183@nctv.com]
+
+# Wrote because I got lazy and didn't want to run 100+ Programs when I start up my server
+# And because I didn't want to write some dumb service files for it either
+
+clear
+cd ~
+znc
+cd minecraft
+./start.sh
+cd ~
+cd /usr/local/games
+screen /tremded-gpp.x86 +set g_humanBuildPoints 150 +set alienBuildPoints 150 +set dedicated 1 +exec server.cfg &
+

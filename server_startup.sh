@@ -30,4 +30,7 @@ cd ts3server/teamspeak3-server_linux_x86
 echo "Going to run cups-browsed, this will ask for your sudo password..."
 sleep 5
 sudo cups-browsed
+echo "Starting up Dropbox..."
+dropbox start
+sleep 5
 echo "Done"

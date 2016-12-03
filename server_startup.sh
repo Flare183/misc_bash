@@ -11,7 +11,6 @@
 # Clearing the screen
 clear
 cd ~
-# Running ZNC first
 echo "Running ZNC..."
 sleep 2
 znc

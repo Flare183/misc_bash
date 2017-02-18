@@ -10,13 +10,7 @@
 while true
 do
     clear
-    echo "    "
-    echo "    "
-    echo "    "
-    echo "    "
-    echo "    "
-    echo "    "
     date -R
-    curl wttr.in/seneca_us
+    curl wttr.in/29678
     sleep 1200
 done

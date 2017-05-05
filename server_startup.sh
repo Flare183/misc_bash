@@ -15,10 +15,15 @@ echo "Running ZNC..."
 sleep 2
 znc
 cd ~
-cd minecraft
 echo "Starting Minecraft..."
-sleep 2
-./start.sh
+# sleep 2
+# ./start.sh
+echo "Switching to Minecraft Account"
+sudo su minecraft
+cd minecraft_current
+./start.sh &
+exit
+echo "Exiting Minecraft Account"
 cd ~
 cd /usr/local/games
 echo "Starting Tremulous Server"

@@ -13,7 +13,7 @@ temp=$(sensors -u | grep -m 1 temp1_input)
 # result10m=$(echo "$load10m > $threshold10m" | bc)
 # result15m=$(echo "$load15m > $threshold15m" | bc)
 
-if [ "$result1m" == 1 ]; then
+if [ "$temp" == 50 ]; then
   pushover -t "Quartz: LoadAvg Warning" Quartz: LoadAvg 1m: '$result1m'
 elif [ "$result10m" == 1 ]; then
   msg="Load 10 min: $load10m (threshold $threshold10m)"

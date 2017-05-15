@@ -1,4 +1,5 @@
 #!/bin/bash
+# Reference: sensors | grep "^temp1" | grep -e '+.*C' | cut -f 2 -d '+' | cut -f 1 -d ' ' | sed 's/°C//'xs
 while true
 do
 
@@ -25,5 +26,6 @@ elif [ "$result15m" == 1 ]; then
   send=1
 fi
 done
+
 
 

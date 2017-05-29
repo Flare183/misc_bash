@@ -15,10 +15,16 @@ peak_temp="50"
 # result10m=$(echo "$load10m > $threshold10m" | bc)
 # result15m=$(echo "$load15m > $threshold15m" | bc)
 
-if [ "$temp_core1" -ge $peak_temp ]; then
+if [ "$temp_core1" == "$peak_temp" ]; then
     pushover -t "Ruby Heat Sensors" Core 1: 'temp_core1'
     sleep 120
-elif [ "$temp_core2" -ge $peak_temp ]; then
+elif [ "$temp_core1" > "$peak_temp" ]; then
+    pushover -t "Ruby Heat Sensors" Core 1: 'temp_core1'
+    sleep 120
+elif [ "$temp_core2" == "$peak_temp" ]; then
+    pushover -t "Ruby Heat Sensors" Core 2: 'temp_core2'
+    sleep 120
+elif [ "$temp_core2" < "$peak_temp" ]; then
     pushover -t "Ruby Heat Sensors" Core 2: 'temp_core2'
     sleep 120
 # elif [ "$result15m" == 1 ]; then

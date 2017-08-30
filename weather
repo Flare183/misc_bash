@@ -11,6 +11,6 @@ while true
 do
     clear
     date -R
-    curl wttr.in/29678
+    curl wttr.in/Western_Seneca
     sleep 1200
 done

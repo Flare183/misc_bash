@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Start Script for Moonstone
+# Written by Jesse N. Richardson [negativeflare] (flare183@charter.net)
+
+echo "Hello! This is the start script for Moonstone"
+echo "This script will ask you for the sudo password sometimes, so just bear with it"
+sleep 10
+
+echo "Starting monero daemon...."
+sudo service monero start
+sleep 20
+
+
+tmux -c /home/jesse/.nvm/v0.10.25/bin/node /home/forknote-pool/init.js

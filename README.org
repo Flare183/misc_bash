@@ -1,3 +1,0 @@
-* README
-** README for Misc. Bash Scripts
-**** These scripts I've written on my spare time.

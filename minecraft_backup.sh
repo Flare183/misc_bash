@@ -16,3 +16,5 @@ sync
 cp -Rv papernut papernut_"$(date +%F)"
 7zip ~/Backups/papernut_"$(date +%F)".7z ~/papernut_"$(date +%F)"
 rm -Rv ~/papernut_"$(date +%F)"
+
+scp ~/Backups/papernut_"$(date +%F)".7z jesse@desktop-vm:~/GDrive/Minecraft_Backups/

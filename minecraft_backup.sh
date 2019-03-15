@@ -13,8 +13,9 @@ sleep 5
 
 tmux send-keys -t Minecraft save-all C-m
 sync
-cp -Rv papernut papernut_"$(date +%F)"
-7zip /home/minecraft/Backups/papernut_"$(date +%F)".7z /home/minecraft/papernut_"$(date +%F)"
+cp -Rv /home/minecraft/papernut /home/minecraft/papernut_"$(date +%F)"
+echo "Running 7zip compress command"
+/usr/local/bin/7zip /home/minecraft/Backups/papernut_"$(date +%F)".7z /home/minecraft/papernut_"$(date +%F)"
 rm -Rv /home/minecraft/papernut_"$(date +%F)"
 
-scp /home/minecraft/Backups/papernut_"$(date +%F)".7z jesse@desktop-vm:~/GDrive/Minecraft_Backups/
+scp /home/minecraft/Backups/papernut_"$(date +%F)".7z jesse@desktop-vm:~/GDrive/Minecraft_Backups

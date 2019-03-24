@@ -18,4 +18,4 @@ echo "Running 7zip compress command"
 /usr/local/bin/7zip /home/minecraft/Backups/papernut_"$(date +%F)".7z /home/minecraft/papernut_"$(date +%F)"
 rm -Rv /home/minecraft/papernut_"$(date +%F)"
 
-scp /home/minecraft/Backups/papernut_"$(date +%F)".7z jesse@desktop-vm:~/GDrive/Minecraft_Backups
+scp -l 7600 /home/minecraft/Backups/papernut_"$(date +%F)".7z jesse@desktop-vm:~/GDrive/Minecraft_Backups

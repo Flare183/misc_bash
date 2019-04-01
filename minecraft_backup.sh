@@ -18,7 +18,7 @@ sync
 cp -Rv /home/minecraft/papernut /home/minecraft/papernut_"$(date +%F)"
 echo "Running 7zip compress command"
 /usr/local/bin/7zip /home/minecraft/Backups/papernut_"$(date +%F)".7z /mnt/Secondary/papernut_"$(date +%F)"
-rm -Rv /home/Secondary/papernut_"$(date +%F)"
+rm -Rv /mnt/Secondary/papernut_"$(date +%F)"
 
 scp -l 7600 /home/minecraft/Backups/papernut_"$(date +%F)".7z jesse@desktop-vm:~/GDrive/Minecraft_Backups
 

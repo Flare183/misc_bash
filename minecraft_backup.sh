@@ -17,8 +17,8 @@ sleep 10
 sync
 cp -Rv /home/minecraft/papernut /home/minecraft/papernut_"$(date +%F)"
 echo "Running 7zip compress command"
-/usr/local/bin/7zip /home/minecraft/Backups/papernut_"$(date +%F)".7z /home/minecraft/papernut_"$(date +%F)"
-rm -Rv /home/minecraft/papernut_"$(date +%F)"
+/usr/local/bin/7zip /home/minecraft/Backups/papernut_"$(date +%F)".7z /mnt/Secondary/papernut_"$(date +%F)"
+rm -Rv /home/Secondary/papernut_"$(date +%F)"
 
 scp -l 7600 /home/minecraft/Backups/papernut_"$(date +%F)".7z jesse@desktop-vm:~/GDrive/Minecraft_Backups
 
@@ -29,7 +29,7 @@ if [[ "$main_file" -ne "$remote_file" ]]; then
   if [[ "$main_file" -ne "$remote_file" ]]; then
     ssh jesse@desktop-vm sudo reboot
     sleep 300
-    ssh jesse@desktop-vm rm /home/jesse/GDrive/papernut_"$(date +%F)".7z
+    ssh jesse@desktop-vm rm /home/jesse/GDrive/Minecraft_Backups/papernut_"$(date +%F)".7z
     ssh jesse@desktop-vm sync
     sleep 5
     scp -l 7600 /home/minecraft/Backups/papernut_"$(date +%F)".7z jesse@desktop-vm:~/GDrive/Minecraft_Backups

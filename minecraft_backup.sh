@@ -24,8 +24,16 @@ scp -l 7600 /home/minecraft/Backups/papernut_"$(date +%F)".7z jesse@desktop-vm:~
 
 main_file=$(stat -c %s /home/minecraft/Backups/papernut_"$(date +%F)".7z)
 remote_file=$(ssh jesse@desktop-vm stat -c %s /home/jesse/GDrive/Minecraft_Backups/papernut_"$(date +%F)".7z)
+
+md5_main_file=$(md5sum /home/minecraft/Backups/papernut_"$(date +%F)".7z)
+md5_remote_file=$(ssh jesse@desktop-vm md5sum /home/jesse/GDrive/Minecraft_Backups/papernut_"$(date +%F)".7z)
+
 if [[ "$main_file" -ne "$remote_file" ]]; then
+  ssh jesse@desktop-vm rm /home/jesse/GDrive/Minecraft_Backups/papernut_"$(date +%F)".7z
+  sleep 5
+  ssh jesse@desktop-vm sync
   scp -l 7600 /home/minecraft/Backups/papernut_"$(date +%F)".7z jesse@desktop-vm:~/GDrive/Minecraft_Backups
+  sleep 10
   if [[ "$main_file" -ne "$remote_file" ]]; then
     ssh jesse@desktop-vm sudo reboot
     sleep 300
@@ -35,5 +43,23 @@ if [[ "$main_file" -ne "$remote_file" ]]; then
     scp -l 7600 /home/minecraft/Backups/papernut_"$(date +%F)".7z jesse@desktop-vm:~/GDrive/Minecraft_Backups
   fi
 else
-  echo "Files are fine."
+  echo "File Sizes Are Fine"
+fi
+
+if [[ "$md5_main_file" -ne "$md5_remote_file" ]]; then
+  ssh jesse@desktop-vm rm /home/jesse/GDrive/Minecraft_Backups/papernut_"$(date +%F)".7z
+  sleep 5
+  ssh jesse@desktop-vm sync
+  scp -l 7600 /home/minecraft/Backups/papernut_"$(date +%F)".7z jesse@desktop-vm:~/GDrive/Minecraft_Backups
+  sleep 10
+  if [[ "$md5_main_file" -ne "$md5_remote_file" ]]; then
+    ssh jesse@desktop-vm sudo reboot
+    sleep 300
+    ssh jesse@desktop-vm rm /home/jesse/GDrive/Minecraft_Backups/papernut_"$(date +%F)".7z
+    ssh jesse@desktop-vm sync
+    sleep 5
+    scp -l 7600 /home/minecraft/Backups/papernut_"$(date +%F)".7z jesse@desktop-vm:~/GDrive/Minecraft_Backups
+  fi
+else
+    echo "File MD5 Sum Should Be Fine"
 fi

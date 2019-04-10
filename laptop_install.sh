@@ -10,5 +10,5 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
-apt-get update
-apt-get install htop zsh terminator audacious vlc gigolo hexchat claws-mail speedcrunch k3b gnome-do docky git git-cola emacs24 emacs-goodies-el slime sbcl milkytracker xiphos sound-converter synaptic gparted
+apt update
+apt install htop zsh terminator audacious vlc gigolo hexchat thunderbird speedcrunch k3b gnome-do docky git milkytracker xiphos sound-converter synaptic gparted

@@ -29,12 +29,14 @@ md5_main_file=$(md5sum --tag /home/minecraft/Backups/papernut_"$(date +%F)".7z |
 md5_remote_file=$(ssh jesse@desktop-vm md5sum --tag /home/jesse/GDrive/Minecraft_Backups/papernut_"$(date +%F)".7z | cut -d '=' -f 2-)
 
 if [[ "$main_file" -ne "$remote_file" ]]; then
+  echo "Files Sizes aren't the same, Trying again..."
   ssh jesse@desktop-vm rm /home/jesse/GDrive/Minecraft_Backups/papernut_"$(date +%F)".7z
   sleep 5
   ssh jesse@desktop-vm sync
   scp -l 7600 /home/minecraft/Backups/papernut_"$(date +%F)".7z jesse@desktop-vm:~/GDrive/Minecraft_Backups
   sleep 10
   if [[ "$main_file" -ne "$remote_file" ]]; then
+    echo "Files Sizes are STILL not the same, rebooting VM, and trying again"
     ssh jesse@desktop-vm sudo reboot
     sleep 300
     ssh jesse@desktop-vm rm /home/jesse/GDrive/Minecraft_Backups/papernut_"$(date +%F)".7z
@@ -47,12 +49,14 @@ else
 fi
 
 if [[ "$md5_main_file" -ne "$md5_remote_file" ]]; then
+  echo "Hashes aren't the same, trying again..."
   ssh jesse@desktop-vm rm /home/jesse/GDrive/Minecraft_Backups/papernut_"$(date +%F)".7z
   sleep 5
   ssh jesse@desktop-vm sync
   scp -l 7600 /home/minecraft/Backups/papernut_"$(date +%F)".7z jesse@desktop-vm:~/GDrive/Minecraft_Backups
   sleep 10
   if [[ "$md5_main_file" -ne "$md5_remote_file" ]]; then
+    echo "Hashes are STILL not the same, rebooting, and trying again..."
     ssh jesse@desktop-vm sudo reboot
     sleep 300
     ssh jesse@desktop-vm rm /home/jesse/GDrive/Minecraft_Backups/papernut_"$(date +%F)".7z

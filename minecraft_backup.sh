@@ -20,25 +20,26 @@ echo "Running 7zip compress command"
 /usr/local/bin/7zip /home/minecraft/Backups/papernut_"$(date +%F)".7z /mnt/Secondary/Minecraft_Compress/papernut_"$(date +%F)"
 rm -Rv /mnt/Secondary/Minecraft_Compress/papernut_"$(date +%F)"
 
-scp -l 7600 /home/minecraft/Backups/papernut_"$(date +%F)".7z jesse@jade:~/GDrive/Minecraft_Backups
+cp /home/minecraft/Backups/papernut_"$(date +%F)".7z /home/minecraft/GDrive/
 
 main_file=$(stat -c %s /home/minecraft/Backups/papernut_"$(date +%F)".7z)
-remote_file=$(ssh jesse@jade stat -c %s /home/jesse/GDrive/Minecraft_Backups/papernut_"$(date +%F)".7z)
+remote_file=$(stat -c %s /home/minecraft/GDrive/papernut_"$(date +%F)".7z)
 
 md5_main_file=$(md5sum --tag /home/minecraft/Backups/papernut_"$(date +%F)".7z | cut -d '=' -f 2-)
-md5_remote_file=$(ssh jesse@jade md5sum --tag /home/jesse/GDrive/Minecraft_Backups/papernut_"$(date +%F)".7z | cut -d '=' -f 2-)
+md5_remote_file=$(md5sum --tag /home/minecraft/GDrive/papernut_"$(date +%F)".7z | cut -d '=' -f 2-)
 
 if [[ "$main_file" -ne "$remote_file" ]]; then
   echo "Files Sizes aren't the same, Trying again..."
-  ssh jesse@jade rm /home/jesse/GDrive/Minecraft_Backups/papernut_"$(date +%F)".7z
+  rm /home/minecraft/GDrive/papernut_"$(date +%F)".7z
   sleep 5
-  ssh jesse@jade sync
-  scp -l 7600 /home/minecraft/Backups/papernut_"$(date +%F)".7z jesse@jade:~/GDrive/Minecraft_Backups
+  sync
+  cp /home/minecraft/Backups/papernut_"$(date +%F)".7z /home/minecraft/GDrive/
   sleep 10
   if [[ "$main_file" -ne "$remote_file" ]]; then
-    echo "Files Sizes are STILL not the same, rebooting VM, and trying again"
-    ssh jesse@jade sudo reboot
-    sleep 300
+    echo "Files Sizes are STILL not the same, umounting and trying again."
+    sleep 100
+    fusermount -u /home/minecraft/GDrive
+    # Finish this, I'm not done.
     ssh jesse@jade rm /home/jesse/GDrive/Minecraft_Backups/papernut_"$(date +%F)".7z
     ssh jesse@jade sync
     sleep 5

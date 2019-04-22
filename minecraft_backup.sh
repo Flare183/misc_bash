@@ -26,8 +26,8 @@ cp /home/minecraft/Backups/papernut_"$(date +%F)".7z /home/minecraft/GDrive/
 main_file=$(stat -c %s /home/minecraft/Backups/papernut_"$(date +%F)".7z)
 remote_file=$(stat -c %s /home/minecraft/GDrive/papernut_"$(date +%F)".7z)
 
-#md5_main_file=$(md5sum --tag /home/minecraft/Backups/papernut_"$(date +%F)".7z | cut -d '=' -f 2-)
-#md5_remote_file=$(md5sum --tag /home/minecraft/GDrive/papernut_"$(date +%F)".7z | cut -d '=' -f 2-)
+main_file_second_check=$(stat -c %s /home/minecraft/Backups/papernut_"$(date +%F)".7z)
+remote_file_second_check=$(stat -c %s /home/minecraft/GDrive/papernut_"$(date +%F)".7z)
 
 if [[ "$main_file" -ne "$remote_file" ]]; then
   echo "Files Sizes aren't the same, Trying again..."
@@ -36,37 +36,47 @@ if [[ "$main_file" -ne "$remote_file" ]]; then
   sync
   cp /home/minecraft/Backups/papernut_"$(date +%F)".7z /home/minecraft/GDrive/
   sleep 10
-  if [[ "$main_file" -ne "$remote_file" ]]; then
+  if [[ "$main_file_second_check" -ne "$remote_file_second_check" ]]; then
     echo "Files Sizes are STILL not the same, umounting and trying again."
     sleep 100
     fusermount -u /home/minecraft/GDrive
     rclone mount --daemon GDrive:Minecraft_Backups/ /home/minecraft/GDrive/
-    rm /home/jesse/GDrive/Minecraft_Backups/papernut_"$(date +%F)".7z
+    sleep 10
+    ls /home/minecraft/GDrive/
+    rm /home/minecraft/GDrive/papernut_"$(date +%F)".7z
     sync
     sleep 5
-    cp -v /home/minecraft/Backups/papernut_"$(date +%F)".7z /home/minecraft/GDrive/Minecraft_Backups/
+    cp -v /home/minecraft/Backups/papernut_"$(date +%F)".7z /home/minecraft/GDrive/
   fi
 else
   echo "File Sizes Are Fine"
 fi
 
-# if [ "$md5_main_file" =! "$md5_remote_file" ]; then
-#   echo "Hashes aren't the same, trying again..."
-#   rm /home/jesse/GDrive/Minecraft_Backups/papernut_"$(date +%F)".7z
-#   sleep 5
-#   sync
-#   cp -v /home/minecraft/Backups/papernut_"$(date +%F)".7z /home/minecraft/GDrive/Minecraft_Backups/
-#   sleep 10
-#   if [ "$md5_main_file" =! "$md5_remote_file" ]; then
-#     echo "Hashes are STILL not the same, umounting and trying again..."
-#     sleep 100
-#     fusermount -u /home/minecraft/GDrive
-#     rclone mount --daemon GDrive:Minecraft_Backups/ /home/minecraft/GDrive/
-#     rm /home/jesse/GDrive/Minecraft_Backups/papernut_"$(date +%F)".7z
-#     sync
-#     sleep 5
-#     cp -v /home/minecraft/Backups/papernut_"$(date +%F)".7z /home/minecraft/GDrive/Minecraft_Backups/
-#   fi
-# else
-#     echo "File MD5 Sum Should Be Fine"
-# fi
+md5_main_file=$(md5sum --tag /home/minecraft/Backups/papernut_"$(date +%F)".7z | cut -d '=' -f 2-)
+md5_remote_file=$(md5sum --tag /home/minecraft/GDrive/papernut_"$(date +%F)".7z | cut -d '=' -f 2-)
+
+md5_main_file_second_check=$(md5sum --tag /home/minecraft/Backups/papernut_"$(date +%F)".7z | cut -d '=' -f 2-)
+md5_remote_file_second_check=$(md5sum --tag /home/minecraft/GDrive/papernut_"$(date +%F)".7z | cut -d '=' -f 2-)
+
+if [ "$md5_main_file" == "$md5_remote_file" ]; then
+  echo "File Hashes are fine."
+else
+    echo "Hashes aren't the same, trying again..."
+    rm /home/jesse/GDrive/papernut_"$(date +%F)".7z
+    sleep 5
+    sync
+    cp -v /home/minecraft/Backups/papernut_"$(date +%F)".7z /home/minecraft/GDrive/
+    sleep 10
+  if [ "$md5_main_file_second_check" == "$md5_remote_file_second_check" ]; then
+    echo "File Hashes are fine"
+    else
+      echo "Hashes are STILL not the same, umounting and trying again..."
+      sleep 100
+      fusermount -u /home/minecraft/GDrive/
+      rclone mount --daemon GDrive:Minecraft_Backups/ /home/minecraft/GDrive/
+      rm /home/jesse/GDrive/Minecraft_Backups/papernut_"$(date +%F)".7z
+      sync
+      sleep 5
+      cp -v /home/minecraft/Backups/papernut_"$(date +%F)".7z /home/minecraft/GDrive/
+  fi
+fi

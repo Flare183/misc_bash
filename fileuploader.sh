@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # Rat's Script to turn off and on the uploader
 # Written by Jesse N. Richardson (negativeflare@negativeflare.xyz) [negativeflare]
 

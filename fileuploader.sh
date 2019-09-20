@@ -9,12 +9,12 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 
-if [ $1 = on ]; then
+if [ $1 = "on" ]; then
   echo "Turning on File uploading..."
   mv /home/zachary/uploader/ /var/www/html/
 fi
 
-if [ $1 = off]; then
+if [ $1 = "off" ]; then
   echo "Turning off File Uploading"
   mv /var/www/html/uploader/ /home/zachary/
 fi

@@ -10,4 +10,4 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
-pacman -Sy htop zsh terminator audacious vlc gigolo hexchat thunderbird speedcrunch k3b gnome-do docky git milkytracker xiphos sound-converter synaptic gparted
+sudo apt install htop zsh terminator audacious vlc gigolo hexchat thunderbird speedcrunch k3b git milkytracker xiphos synaptic gparted

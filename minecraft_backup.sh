@@ -15,7 +15,7 @@ echo "Setting up new log file"
 date -R >> /var/log/minecraft_backup/minecraft_backup.log
 
 tmux send-keys -t Minecraft save-all C-m
-sleep 10
+sleep 50
 sync
 cp -Rv /home/minecraft/papernut /mnt/Secondary/Minecraft_Compress/papernut_"$(date +%F)"
 echo "Running 7zip compress command"

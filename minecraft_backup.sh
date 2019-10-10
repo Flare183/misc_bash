@@ -9,8 +9,10 @@ echo "Then 7zips it up and puts it in the backups folder"
 echo "NOTE: For this script to run properly you need the 7zip script in my misc_bash repo on Github"
 echo "https://github.com/Flare183/misc_bash"
 
-
 sleep 5
+
+echo "Setting up new log file"
+date -R >> /var/log/minecraft_backup/minecraft_backup.log
 
 tmux send-keys -t Minecraft save-all C-m
 sleep 10

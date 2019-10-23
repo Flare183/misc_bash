@@ -14,26 +14,27 @@ sleep 5
 echo "Setting up new log file"
 date -R >> /var/log/minecraft_backup/minecraft_backup.log
 
-# tmux send-keys -t Minecraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
-# sleep 60
-# tmux send-keys -t Minecraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
-# sleep 60
-# tmux send-keys -t Minecraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
-# sleep 60
-# tmux send-keys -t Minecraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
-# sleep 60
-# tmux send-keys -t Minecraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
-# sleep 60
-# tmux send-keys -t Minecraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
-# sleep 60
-# tmux send-keys -t Minecraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ NOW C-m
-# sleep 15
+
+tmux send-keys -t Minecraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
+sleep 60
+tmux send-keys -t Minecraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
+sleep 60
+tmux send-keys -t Minecraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
+sleep 60
+tmux send-keys -t Minecraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
+sleep 60
+tmux send-keys -t Minecraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
+sleep 60
+tmux send-keys -t Minecraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
+sleep 60
+tmux send-keys -t Minecraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ NOW C-m
+sleep 15
 
 
 tmux send-keys -t Minecraft save-all C-m
 sleep 10
-#tmux send-keys -t Minecraft stop C-m
-#sleep 50
+tmux send-keys -t Minecraft stop C-m
+sleep 50
 sync
 cp -Rv /mnt/Secondary/paper-2019/papernut /mnt/Secondary/Minecraft_Compress/papernut_"$(date +%F)"
 echo "Running 7zip compress command"
@@ -104,5 +105,3 @@ fi
 # Start the Server backup
 cd /mnt/Secondary/paper-2019/papernut/
 tmux new -d -s Minecraft java -jar paper-214.jar
-
-

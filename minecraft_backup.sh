@@ -14,7 +14,6 @@ sleep 5
 echo "Setting up new log file"
 date -R >> /var/log/minecraft_backup/minecraft_backup.log
 
-
 # tmux send-keys -t Minecraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
 # sleep 60
 # tmux send-keys -t Minecraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
@@ -103,5 +102,7 @@ else
 fi
 
 # Start the Server backup
-# cd /mnt/Secondary/paper-2019/papernut/
-# bash /mnt/Secondary/paper-2019/papernut/start.sh
+cd /mnt/Secondary/paper-2019/papernut/
+tmux new -d -s Minecraft java -jar paper-214.jar
+
+

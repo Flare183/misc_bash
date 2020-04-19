@@ -16,30 +16,56 @@ sleep 5
 #date -R >> /var/log/minecraft_backup/minecraft_backup.log
 
 
-tmux send-keys -t Minecraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
+tmux send-keys -t lobby say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
 sleep 60
-tmux send-keys -t Minecraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
+tmux send-keys -t papernut say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
 sleep 60
-tmux send-keys -t Minecraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
+tmux send-keys -t skyworld say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
 sleep 60
-tmux send-keys -t Minecraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
+tmux send-keys -t lobby say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
 sleep 60
-tmux send-keys -t Minecraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
+tmux send-keys -t papernut say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
 sleep 60
-tmux send-keys -t Minecraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ NOW C-m
+tmux send-keys -t skyworld say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
+sleep 60
+tmux send-keys -t lobby say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
+sleep 60
+tmux send-keys -t papernut say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
+sleep 60
+tmux send-keys -t skyworld say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
+sleep 60
+tmux send-keys -t lobby say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
+sleep 60
+tmux send-keys -t papernut say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
+sleep 60
+tmux send-keys -t skyworld say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
+sleep 60
+tmux send-keys -t lobby say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
+sleep 60
+tmux send-keys -t papernut say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
+sleep 60
+tmux send-keys -t skyworld say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
+sleep 60
 sleep 15
 
 
-tmux send-keys -t Minecraft save-all C-m
+tmux send-keys -t lobby save-all C-m
+tmux send-keys -t papernut save-all C-m
+tmux send-keys -t skyworld save-all C-m
 sleep 10
-tmux send-keys -t Minecraft stop C-m
+tmux send-keys -t lobby stop C-m
+tmux send-keys -t papernut stop C-m
+tmux send-keys -t skyworld stop C-m
 sleep 50
 sync
+
 mkdir /home/minecraft/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"/
 cp -Rv /home/minecraft/papernut/ /home/minecraft/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"/
 cp -Rv /home/minecraft/waterfall/ /home/minecraft/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"/
 cp -Rv /home/minecraft/lobby/ /home/minecraft/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"/
 cp -Rv /home/minecraft/skyworld/ /home/minecraft/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"/
+sync
+sleep 10
 
 echo "Running 7zip compress command"
 /usr/local/bin/7zip /home/minecraft/papernut-typhlosion_"$(date +%F)".7z /home/minecraft/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"
@@ -107,6 +133,11 @@ else
 fi
 
 # Start the Server backup
-cd /home/minecraft/papernut/
+cd /home/minecraft/lobby/
 #tmux new -d -s Minecraft java -jar paper-214.jar
-tmux new -d -s Minecraft java -Xms4096M -Xmx4096M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -Dusing.aikars.flags=mcflags.emc.gs -jar paper-137.jar
+tmux new -s lobby java -Xms1024M -Xmx1024M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -Dusing.aikars.flags=mcflags.emc.gs -jar serverjars-1.jar --nogui
+cd /home/minecraft/papernut/
+tmux new -s papernut java -Xms4096M -Xmx4096M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -Dusing.aikars.flags=mcflags.emc.gs -jar serverjars-1.jar --nogui
+cd /home/minecraft/skyworld/
+tmux new -s skyworld java -Xms4096M -Xmx4096M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -Dusing.aikars.flags=mcflags.emc.gs -jar serverjars-1.jar --nogui
+echo "Done"

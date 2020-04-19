@@ -35,7 +35,12 @@ sleep 10
 tmux send-keys -t Minecraft stop C-m
 sleep 50
 sync
-cp -Rv /home/minecraft/papernut /home/minecraft/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"
+mkdir /home/minecraft/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"/
+cp -Rv /home/minecraft/papernut/ /home/minecraft/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"/
+cp -Rv /home/minecraft/waterfall/ /home/minecraft/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"/
+cp -Rv /home/minecraft/lobby/ /home/minecraft/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"/
+cp -Rv /home/minecraft/skyworld/ /home/minecraft/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"/
+
 echo "Running 7zip compress command"
 /usr/local/bin/7zip /home/minecraft/papernut-typhlosion_"$(date +%F)".7z /home/minecraft/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"
 rm -Rv /home/minecraft/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"

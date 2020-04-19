@@ -17,36 +17,26 @@ sleep 5
 
 
 tmux send-keys -t lobby say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
-sleep 60
 tmux send-keys -t papernut say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
-sleep 60
 tmux send-keys -t skyworld say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
 sleep 60
+
 tmux send-keys -t lobby say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
-sleep 60
 tmux send-keys -t papernut say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
-sleep 60
 tmux send-keys -t skyworld say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
 sleep 60
 tmux send-keys -t lobby say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
-sleep 60
 tmux send-keys -t papernut say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
-sleep 60
 tmux send-keys -t skyworld say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
 sleep 60
 tmux send-keys -t lobby say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
-sleep 60
 tmux send-keys -t papernut say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
-sleep 60
 tmux send-keys -t skyworld say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
 sleep 60
 tmux send-keys -t lobby say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
-sleep 60
 tmux send-keys -t papernut say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
-sleep 60
 tmux send-keys -t skyworld say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
 sleep 60
-sleep 15
 
 
 tmux send-keys -t lobby save-all C-m

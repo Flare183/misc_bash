@@ -16,34 +16,27 @@ sleep 5
 #date -R >> /var/log/minecraft_backup/minecraft_backup.log
 
 
-tmux send-keys -t lobby say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
 tmux send-keys -t papernut say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
 tmux send-keys -t skyworld say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
 sleep 60
 
-tmux send-keys -t lobby say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
 tmux send-keys -t papernut say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
 tmux send-keys -t skyworld say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
 sleep 60
-tmux send-keys -t lobby say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
 tmux send-keys -t papernut say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
 tmux send-keys -t skyworld say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
 sleep 60
-tmux send-keys -t lobby say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
 tmux send-keys -t papernut say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
 tmux send-keys -t skyworld say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
 sleep 60
-tmux send-keys -t lobby say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
 tmux send-keys -t papernut say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
 tmux send-keys -t skyworld say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
 sleep 60
 
 
-tmux send-keys -t lobby save-all C-m
 tmux send-keys -t papernut save-all C-m
 tmux send-keys -t skyworld save-all C-m
 sleep 10
-tmux send-keys -t lobby stop C-m
 tmux send-keys -t papernut stop C-m
 tmux send-keys -t skyworld stop C-m
 sleep 50
@@ -52,7 +45,6 @@ sync
 mkdir /home/minecraft/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"/
 cp -Rv /home/minecraft/papernut/ /home/minecraft/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"/
 cp -Rv /home/minecraft/waterfall/ /home/minecraft/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"/
-cp -Rv /home/minecraft/lobby/ /home/minecraft/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"/
 cp -Rv /home/minecraft/skyworld/ /home/minecraft/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"/
 sync
 sleep 10

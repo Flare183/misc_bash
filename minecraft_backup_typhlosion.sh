@@ -63,7 +63,7 @@ sync
 sleep 10
 
 echo "Running 7zip compress command"
-/usr/local/bin/7zip /home/minecraft/rr-typhlosion_"$(date +%F)".7z /mnt/cyndaquil/Minecraft_Compress/rr-typhlosion_"$(date +%F)"
+/usr/local/bin/7zip /mnt/cyndaquil/rr-typhlosion_"$(date +%F)".7z /mnt/cyndaquil/Minecraft_Compress/rr-typhlosion_"$(date +%F)"
 rm -Rv /mnt/cyndaquil/Minecraft_Compress/rr-typhlosion_"$(date +%F)"
 
 # Start the Server backup
@@ -71,7 +71,7 @@ cd /home/minecraft/ResonantRise/
 tmux new -d -s rr java -server -Xmx8196M -Xms8196M -XX:+UnlockExperimentalVMOptions -XX:ParallelGCThreads=16 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+AggressiveOpts -XX:+CMSIncrementalPacing -jar forge-1.12.2-14.23.5.2847-universal.jar nogui
 
 echo "Uploading File for the first time..."
-cp /home/minecraft/rr-typhlosion_"$(date +%F)".7z /home/minecraft/GDrive/
+cp /mnt/cyndaquil/rr-typhlosion_"$(date +%F)".7z /home/minecraft/GDrive/
 
 main_file=$(stat -c %s /home/minecraft/rr-typhlosion_"$(date +%F)".7z)
 remote_file=$(stat -c %s /home/minecraft/GDrive/rr-typhlosion_"$(date +%F)".7z)
@@ -144,4 +144,5 @@ fi
 #tmux send-keys -t ftb mvconfirm C-m
 #rm -Rv /home/minecraft/ftb/resource_nether
 #tmux send-keys -t ftb mv create resource_nether nether C-m
+tmux send-keys -t rr say\ Backup\ Is\ Complete C-m
 echo "Done"

@@ -50,7 +50,7 @@ sync
 mkdir /mnt/cyndaquil/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"/
 mkdir /mnt/cyndaquil/Minecraft_Compress/rr-typhlosion_"$(date +%F)"/
 rsync -av --progress --max-size=10G /mnt/cyndaquil/ResonantRise/ /mnt/cyndaquil/Minecraft_Compress/rr-typhlosion_"$(date +%F)"/
-rsync -av --progress /home/jesse/papernut/ /mnt/cyndaquil/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"
+rsync -av --progress /home/minecraft/papernut/ /mnt/cyndaquil/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"
 sync
 sleep 10
 

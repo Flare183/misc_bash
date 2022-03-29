@@ -47,19 +47,19 @@ tmux send-keys -t rr stop C-m
 sleep 50
 sync
 
-mkdir /mnt/cyndaquil/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"/
-mkdir /mnt/cyndaquil/Minecraft_Compress/rr-typhlosion_"$(date +%F)"/
-rsync -av --progress --max-size=10G /mnt/cyndaquil/ResonantRise/ /mnt/cyndaquil/Minecraft_Compress/rr-typhlosion_"$(date +%F)"/
-rsync -av --progress /home/minecraft/papernut/ /mnt/cyndaquil/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"
+mkdir /mnt/mudkip/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"/
+mkdir /mnt/mudkip/Minecraft_Compress/rr-typhlosion_"$(date +%F)"/
+rsync -av --progress --max-size=10G /mnt/cyndaquil/ResonantRise/ /mnt/mudkip/Minecraft_Compress/rr-typhlosion_"$(date +%F)"/
+rsync -av --progress /home/minecraft/papernut/ /mnt/mudkip/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"
 sync
 sleep 10
 
 echo "Running 7zip compress command"
-/usr/local/bin/7zip /mnt/cyndaquil/rr-typhlosion_"$(date +%F)".7z /mnt/cyndaquil/Minecraft_Compress/rr-typhlosion_"$(date +%F)"
+/usr/local/bin/7zip /mnt/mudkip/rr-typhlosion_"$(date +%F)".7z /mnt/mudkip/Minecraft_Compress/rr-typhlosion_"$(date +%F)"
 sleep 30
-/usr/local/bin/7zip /mnt/cyndaquil/papernut-typhlosion_"$(date +%F)".7z /mnt/cyndaquil/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"
-rm -Rv /mnt/cyndaquil/Minecraft_Compress/rr-typhlosion_"$(date +%F)"
-rm -Rv /mnt/cyndaquil/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"
+/usr/local/bin/7zip /mnt/mudkip/papernut-typhlosion_"$(date +%F)".7z /mnt/mudkip/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"
+rm -Rv /mnt/mudkip/Minecraft_Compress/rr-typhlosion_"$(date +%F)"
+rm -Rv /mnt/mudkip/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"
 sync
 sleep 20
 

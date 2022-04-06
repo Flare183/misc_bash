@@ -54,7 +54,8 @@ sleep 20
 
 
 # Start the Server backup
-bash /mnt/SecondaryMinecraft-Servers/crazycraft/start.sh
+cd /mnt/Secondary/Minecraft-Servers/crazycraft/
+bash start.sh
 
 # echo "Uploading File for the first time..."
 # rsync -av --progress /mnt/cyndaquil/rr-typhlosion_"$(date +%F)".7z /home/minecraft/GDrive/

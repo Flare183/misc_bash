@@ -46,7 +46,7 @@ sync
 sleep 10
 
 echo "Running 7zip compress command"
-/usr/local/bin/7zip /mnt/Secondary/Minecraft_Compress/crazycraft_onyx_"$(date +%F)".7z /mnt/Secondary/Minecraft-Servers/crazycraft_onyx_"$(date +%F)"
+/usr/local/bin/7zip /mnt/Secondary/Minecraft_Compress/crazycraft_onyx_"$(date +%F)".7z /mnt/500GB/CC_Backup/crazycraft_onyx_"$(date +%F)"
 sleep 30
 rm -Rv /mnt/Secondary/Minecraft_Compress/crazycraft_onyx_"$(date +%F)"/
 sync

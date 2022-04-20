@@ -17,20 +17,20 @@ touch /var/log/minecraft_backup/minecraft_backup.log
 date -R >> /var/log/minecraft_backup/minecraft_backup.log
 
 
-tmux send-keys -t crazycraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
-sleep 60
-
-tmux send-keys -t crazycraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
-sleep 60
-
-tmux send-keys -t crazycraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
-sleep 60
-
-tmux send-keys -t crazycraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
-sleep 60
-
-tmux send-keys -t crazycraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
-sleep 60
+# tmux send-keys -t crazycraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
+# sleep 60
+#
+# tmux send-keys -t crazycraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
+# sleep 60
+#
+# tmux send-keys -t crazycraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
+# sleep 60
+#
+# tmux send-keys -t crazycraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
+# sleep 60
+#
+# tmux send-keys -t crazycraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
+# sleep 60
 
 
 tmux send-keys -t crazycraft save-all C-m
@@ -46,7 +46,7 @@ sync
 sleep 10
 
 echo "Running 7zip compress command"
-/usr/local/bin/7zip /mnt/Secondary/Minecraft_Compress/crazycraft_onyx_"$(date +%F)".7z /mnt/500GB/CC_Backup/crazycraft_onyx_"$(date +%F)"
+/usr/local/bin/7zip /mnt/500GB/CC_Backup/crazycraft_onyx_"$(date +%F)".7z /mnt/Secondary/Minecraft_Compress/crazycraft_onyx_"$(date +%F)"
 sleep 30
 rm -Rv /mnt/Secondary/Minecraft_Compress/crazycraft_onyx_"$(date +%F)"/
 sync

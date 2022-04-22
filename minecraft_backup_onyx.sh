@@ -36,7 +36,7 @@ date -R >> /var/log/minecraft_backup/minecraft_backup.log
 tmux send-keys -t crazycraft save-all C-m
 sleep 10
 
-#tmux send-keys -t crazycraft stop C-m
+tmux send-keys -t crazycraft stop C-m
 sleep 50
 sync
 
@@ -54,8 +54,8 @@ sleep 20
 
 
 # Start the Server backup
-#cd /mnt/Secondary/Minecraft-Servers/crazycraft/
-#tmux new -s crazycraft /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dlog4j2.formatMsgNoLookups=true -Xms12G -Xmx12G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar forge.jar nogui
+cd /mnt/Secondary/Minecraft-Servers/crazycraft/
+tmux new -s crazycraft /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dlog4j2.formatMsgNoLookups=true -Xms12G -Xmx12G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar forge.jar nogui
 
 # echo "Uploading File for the first time..."
 # rsync -av --progress /mnt/cyndaquil/rr-typhlosion_"$(date +%F)".7z /home/minecraft/GDrive/

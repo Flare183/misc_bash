@@ -3,9 +3,8 @@
 # Written by Jesse N. Richardson (negativeflare@negativeflare.xyz) [negativeflare]
 
 echo "This is a Minecraft Backup Script, it looks for the Minecraft tmux session"
-echo "Then it looks for the 'Resonant Rise' folder, and backs it up"
+echo "Then it looks for the 'crazycraft' folder, and backs it up"
 echo "Then 7zips it up and puts it in the backups folder"
-echo "This Script backs up the Typhlosion Server to Google Drive as well"
 
 echo "NOTE: For this script to run properly you need the 7zip script in my misc_bash repo on Github"
 echo "https://github.com/Flare183/misc_bash"
@@ -41,7 +40,7 @@ sleep 50
 sync
 
 mkdir /mnt/Secondary/Minecraft_Compress/crazycraft_onyx_"$(date +%F)"/
-rsync -av --progress /mnt/Secondary/Minecraft-Servers/crazycraft/ /mnt/Secondary/Minecraft_Compress/crazycraft_onyx_"$(date +%F)"/
+rsync -av --progress /mnt/WDBlueSSD/Minecraft/crazycraft/ /mnt/Secondary/Minecraft_Compress/crazycraft_onyx_"$(date +%F)"/
 sync
 sleep 10
 
@@ -54,7 +53,7 @@ sleep 20
 
 
 # Start the Server backup
-cd /mnt/Secondary/Minecraft-Servers/crazycraft/
+cd /mnt/WDBlueSSD/Minecraft/crazycraft/
 tmux new -d -s crazycraft /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dlog4j2.formatMsgNoLookups=true -Xms12G -Xmx12G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar forge.jar nogui
 
 # echo "Uploading File for the first time..."

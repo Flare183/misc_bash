@@ -16,19 +16,19 @@ touch /var/log/minecraft_backup/minecraft_backup.log
 date -R >> /var/log/minecraft_backup/minecraft_backup.log
 
 
-tmux send-keys -t crazycraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
+tmux send-keys -t crazycraft say\ CC:\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
 sleep 60
 
-tmux send-keys -t crazycraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
+tmux send-keys -t crazycraft say\ CC:\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
 sleep 60
 
-tmux send-keys -t crazycraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
+tmux send-keys -t crazycraft say\ CC:\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
 sleep 60
 
-tmux send-keys -t crazycraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
+tmux send-keys -t crazycraft say\ CC:\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
 sleep 60
 
-tmux send-keys -t crazycraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
+tmux send-keys -t crazycraft say\ CC:\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
 sleep 60
 
 

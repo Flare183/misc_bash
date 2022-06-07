@@ -18,57 +18,57 @@ date -R >> /var/log/minecraft_backup/minecraft_backup.log
 
 
 tmux send-keys -t papernut say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
-tmux send-keys -t rr say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
+#tmux send-keys -t rr say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
 sleep 60
 
 tmux send-keys -t papernut say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
-tmux send-keys -t rr say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
+#tmux send-keys -t rr say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
 sleep 60
 
 tmux send-keys -t papernut say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
-tmux send-keys -t rr say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
+#tmux send-keys -t rr say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
 sleep 60
 
 tmux send-keys -t papernut say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
-tmux send-keys -t rr say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
+#tmux send-keys -t rr say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
 sleep 60
 
 tmux send-keys -t papernut say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
-tmux send-keys -t rr say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
+#tmux send-keys -t rr say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
 sleep 60
 
 
 tmux send-keys -t papernut save-all C-m
-tmux send-keys -t rr save-all C-m
+#tmux send-keys -t rr save-all C-m
 sleep 10
 
 tmux send-keys -t papernut stop C-m
-tmux send-keys -t rr stop C-m
+#tmux send-keys -t rr stop C-m
 sleep 50
 sync
 
 mkdir /mnt/mudkip/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"/
-mkdir /mnt/mudkip/Minecraft_Compress/rr-typhlosion_"$(date +%F)"/
-rsync -av --progress --max-size=10G /mnt/cyndaquil/ResonantRise/ /mnt/mudkip/Minecraft_Compress/rr-typhlosion_"$(date +%F)"/
+#mkdir /mnt/mudkip/Minecraft_Compress/rr-typhlosion_"$(date +%F)"/
+#rsync -av --progress --max-size=10G /mnt/cyndaquil/ResonantRise/ /mnt/mudkip/Minecraft_Compress/rr-typhlosion_"$(date +%F)"/
 rsync -av --progress /home/minecraft/papernut/ /mnt/mudkip/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"
 sync
 sleep 10
 
 echo "Running 7zip compress command"
-/usr/local/bin/7zip /mnt/mudkip/rr-typhlosion_"$(date +%F)".7z /mnt/mudkip/Minecraft_Compress/rr-typhlosion_"$(date +%F)"
-sleep 30
+#/usr/local/bin/7zip /mnt/mudkip/rr-typhlosion_"$(date +%F)".7z /mnt/mudkip/Minecraft_Compress/rr-typhlosion_"$(date +%F)"
+#sleep 30
 /usr/local/bin/7zip /mnt/mudkip/papernut-typhlosion_"$(date +%F)".7z /mnt/mudkip/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"
-rm -Rv /mnt/mudkip/Minecraft_Compress/rr-typhlosion_"$(date +%F)"
+#rm -Rv /mnt/mudkip/Minecraft_Compress/rr-typhlosion_"$(date +%F)"
 rm -Rv /mnt/mudkip/Minecraft_Compress/papernut-typhlosion_"$(date +%F)"
 sync
 sleep 20
 
 
 # Start the Server backup
-cd /home/minecraft/ResonantRise/
-tmux new -d -s rr /usr/lib/jvm/java-8-openjdk-amd64/bin/java -server -Xmx8196M -Xms8196M -XX:+UnlockExperimentalVMOptions -XX:ParallelGCThreads=16 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+AggressiveOpts -XX:+CMSIncrementalPacing -jar forge-1.12.2-14.23.5.2847-universal.jar nogui
+# cd /home/minecraft/ResonantRise/
+# tmux new -d -s rr /usr/lib/jvm/java-8-openjdk-amd64/bin/java -server -Xmx8196M -Xms8196M -XX:+UnlockExperimentalVMOptions -XX:ParallelGCThreads=16 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+AggressiveOpts -XX:+CMSIncrementalPacing -jar forge-1.12.2-14.23.5.2847-universal.jar nogui
 
-sleep 90
+# sleep 90
 cd /home/minecraft/papernut/
 tmux new -d -s papernut java -Xms6G -Xmx6G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar paper.jar nogui
 

@@ -1,14 +1,12 @@
 #!/usr/bin/env bash
 # Minecraft Backup Script
-# Written by Jesse N. Richardson (negativeflare@negativeflare.xyz) [negativeflare]
+# Written by Jesse N. Richardson (jr.fire.flare@gmail.com) [negativeflare]
 
 
-echo "This script is DEPRACATED DO NOT USE IT!"
-sleep 120
 
 
 echo "This is a Minecraft Backup Script, it looks for the Minecraft tmux session"
-echo "Then it looks for the 'Resonant Rise' folder, and backs it up"
+echo "Then it looks for the 'CrazyCraft' folder, and backs it up"
 echo "Then 7zips it up and puts it in the backups folder"
 echo "This Script backs up the Typhlosion Server to Google Drive as well"
 
@@ -18,48 +16,49 @@ echo "https://github.com/Flare183/misc_bash"
 sleep 5
 
 echo "Setting up new log file"
+touch /var/log/minecraft_backup/minecraft_backup.log
 date -R >> /var/log/minecraft_backup/minecraft_backup.log
 
 
 #tmux send-keys -t vanilla say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
 #tmux send-keys -t lobby say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
-tmux send-keys -t rr say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
+tmux send-keys -t crazycraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
 sleep 60
 
 #tmux send-keys -t vanilla say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
 #tmux send-keys -t skyworld say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
-tmux send-keys -t rr say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
+tmux send-keys -t crazycraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 4 C-m
 sleep 60
 
 #tmux send-keys -t vanilla say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
 #tmux send-keys -t skyworld say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
-tmux send-keys -t rr say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
+tmux send-keys -t crazycraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 3 C-m
 sleep 60
 
 #tmux send-keys -t vanilla say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
 #tmux send-keys -t skyworld say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
-tmux send-keys -t rr say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
+tmux send-keys -t crazycraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 2 C-m
 sleep 60
 
 #tmux send-keys -t vanilla say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
 #tmux send-keys -t skyworld say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
-tmux send-keys -t rr say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
+tmux send-keys -t crazycraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 1 C-m
 sleep 60
 
 
 #tmux send-keys -t vanilla save-all C-m
 #tmux send-keys -t skyworld save-all C-m
-tmux send-keys -t rr save-all C-m
+tmux send-keys -t crazycraft save-all C-m
 sleep 10
 
 #tmux send-keys -t vanilla stop C-m
 #tmux send-keys -t skyworld stop C-m
-tmux send-keys -t rr stop C-m
-sleep 50
+tmux send-keys -t crazycraft stop C-m
+sleep 60
 sync
 
-mkdir /mnt/cyndaquil/Minecraft_Compress/rr-typhlosion_"$(date +%F)"/
-rsync -av --progress --max-size=10G /mnt/cyndaquil/ResonantRise/ /mnt/cyndaquil/Minecraft_Compress/rr-typhlosion_"$(date +%F)"/
+mkdir /mnt/cyndaquil/Minecraft_Compress/crazycraft-typhlosion_"$(date +%F)"/
+rsync -av --progress --max-size=10G /mnt/mudkip/crazycraft /mnt/cyndaquil/Minecraft_Compress/crazycraft-typhlosion_"$(date +%F)"/
 #cp -Rv /home/minecraft/waterfall/ /mnt/cyndaquil/Minecraft_Compress/ftb-typhlosion_"$(date +%F)"/
 #cp -Rv /home/minecraft/skyworld/ /mnt/cyndaquil/Minecraft_Compress/ftb-typhlosion_"$(date +%F)"/
 #cp -Rv /home/minecraft/lobby/ /mnt/cyndaquil/Minecraft_Compress/ftb-typhlosion_"$(date +%F)"/
@@ -68,15 +67,15 @@ sync
 sleep 10
 
 echo "Running 7zip compress command"
-/usr/local/bin/7zip /mnt/cyndaquil/rr-typhlosion_"$(date +%F)".7z /mnt/cyndaquil/Minecraft_Compress/rr-typhlosion_"$(date +%F)"
-rm -Rv /mnt/cyndaquil/Minecraft_Compress/rr-typhlosion_"$(date +%F)"
+/usr/local/bin/7zip /mnt/cyndaquil/CC_Backup/crazycraft-typhlosion_"$(date +%F)".7z /mnt/cyndaquil/Minecraft_Compress/crazycraft-typhlosion_"$(date +%F)"
+rm -Rv /mnt/cyndaquil/Minecraft_Compress/crazycraft-typhlosion_"$(date +%F)"
 sync
 sleep 20
 
 
 # Start the Server backup
-cd /home/minecraft/ResonantRise/
-tmux new -d -s rr /usr/lib/jvm/java-8-openjdk-amd64/bin/java -server -Xmx8196M -Xms8196M -XX:+UnlockExperimentalVMOptions -XX:ParallelGCThreads=16 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+AggressiveOpts -XX:+CMSIncrementalPacing -jar forge-1.12.2-14.23.5.2847-universal.jar nogui
+cd /mnt/mudkip/crazycraft/
+exec /mnt/mudkip/crazycraft/start.sh
 
 # echo "Uploading File for the first time..."
 # rsync -av --progress /mnt/cyndaquil/rr-typhlosion_"$(date +%F)".7z /home/minecraft/GDrive/

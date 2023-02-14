@@ -22,6 +22,7 @@ date -R >> /var/log/minecraft_backup/minecraft_backup.log
 
 #tmux send-keys -t vanilla say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
 #tmux send-keys -t lobby say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
+tmux send-keys -t crazycraft say\ SERVER\ GOING\ DOWN\ FOR\ BACKUPS\ C-m
 tmux send-keys -t crazycraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
 sleep 60
 
@@ -75,81 +76,9 @@ sleep 20
 
 # Start the Server backup
 cd /mnt/mudkip/crazycraft/
-tmux new -d -s crazycraft /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dlog4j2.formatMsgNoLookups=true -Xms12G -Xmx12G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar forge.jar nogui
+#tmux new -d -s crazycraft /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dlog4j2.formatMsgNoLookups=true -Xms12G -Xmx12G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar forge.jar nogui
+tmux new -d -s crazycraft /usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dlog4j2.formatMsgNoLookups=true -Xms16G -Xmx16G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=50 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=20 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=32 -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Dsun.rmi.dgc.server.gcInterval=600000 -Daikars.new.flags=true
 
-# echo "Uploading File for the first time..."
-# rsync -av --progress /mnt/cyndaquil/rr-typhlosion_"$(date +%F)".7z /home/minecraft/GDrive/
-
-# main_file=$(stat -c %s /mnt/cyndaquil/rr-typhlosion_"$(date +%F)".7z)
-# remote_file=$(stat -c %s /home/minecraft/GDrive/rr-typhlosion_"$(date +%F)".7z)
-
-# main_file_second_check=$(stat -c %s /mnt/cyndaquil/rr-typhlosion_"$(date +%F)".7z)
-# remote_file_second_check=$(stat -c %s /home/minecraft/GDrive/rr-typhlosion_"$(date +%F)".7z)
-
-# if [[ "$main_file" -ne "$remote_file" ]]; then
-#   echo "Files Sizes aren't the same, Trying again..."
-#   rm /home/minecraft/GDrive/rr-typhlosion_"$(date +%F)".7z
-#   sleep 5
-#   sync
-#   cp /home/minecraft/rr-typhlosion_"$(date +%F)".7z /home/minecraft/GDrive/
-#   sleep 10
-#   if [[ "$main_file_second_check" -ne "$remote_file_second_check" ]]; then
-#     echo "Files Sizes are STILL not the same, umounting and trying again."
-#     sleep 100
-#     fusermount -u /home/minecraft/GDrive
-#     rclone mount --daemon GDrive:Minecraft_Backups/ /home/minecraft/GDrive/
-#     sleep 10
-#     ls /home/minecraft/GDrive/
-#     rm /home/minecraft/GDrive/rr-typhlosion_"$(date +%F)".7z
-#     sync
-#     sleep 5
-#     cp -v /mnt/cyndaquil/rr-typhlosion_"$(date +%F)".7z /home/minecraft/GDrive/
-#   fi
-# else
-#   echo "File Sizes Are Fine"
-# fi
-
-# md5_main_file=$(md5sum --tag /mnt/cyndaquil/rr-typhlosion_"$(date +%F)".7z | cut -d '=' -f 2-)
-# md5_remote_file=$(md5sum --tag /home/minecraft/GDrive/rr-typhlosion_"$(date +%F)".7z | cut -d '=' -f 2-)
-
-# md5_main_file_second_check=$(md5sum --tag /mnt/cyndaquil/rr-typhlosion_"$(date +%F)".7z | cut -d '=' -f 2-)
-# md5_remote_file_second_check=$(md5sum --tag /home/minecraft/GDrive/rr-typhlosion_"$(date +%F)".7z | cut -d '=' -f 2-)
-
-# if [ "$md5_main_file" == "$md5_remote_file" ]; then
-#   echo "File Hashes are fine."
-# else
-#     echo "Hashes aren't the same, trying again..."
-#     rm /home/jesse/GDrive/rr-typhlosion_"$(date +%F)".7z
-#     sleep 5
-#     sync
-#     cp -v /mnt/cyndaquil/rr-typhlosion_"$(date +%F)".7z /home/minecraft/GDrive/
-#     sleep 10
-#   if [ "$md5_main_file_second_check" == "$md5_remote_file_second_check" ]; then
-#     echo "File Hashes are fine"
-#     else
-#       echo "Hashes are STILL not the same, umounting and trying again..."
-#       sleep 100
-#       fusermount -u /home/minecraft/GDrive/
-#       rclone mount --daemon GDrive:Minecraft_Backups/ /home/minecraft/GDrive/
-#       rm /home/jesse/GDrive/Minecraft_Backups/rr-typhlosion_"$(date +%F)".7z
-#       sync
-#       sleep 5
-#       cp -v /mnt/cyndaquil/rr-typhlosion_"$(date +%F)".7z /home/minecraft/GDrive/
-#   fi
-# fi
-
-# # Start the Server backup
-# cd /home/minecraft/ResonantRise/
-# tmux new -d -s rr java -server -Xmx8196M -Xms8196M -XX:+UnlockExperimentalVMOptions -XX:ParallelGCThreads=16 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+AggressiveOpts -XX:+CMSIncrementalPacing -jar forge-1.12.2-14.23.5.2847-universal.jar nogui
-#tmux new -d -s ftb java -Xms8096M -Xmx8096M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -Dusing.aikars.flags=mcflags.emc.gs -jar paper.jar --nogui
-#cd /home/minecraft/skyworld/
-#tmux new -d -s skyworld java -Xms2096M -Xmx2096M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -Dusing.aikars.flags=mcflags.emc.gs -jar serverjars-1.jar --nogui
-#cd /home/minecraft/vanilla/
-#tmux new -d -s vanilla java -Xms2096M -Xmx2096M -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:G1NewSizePercent=50 -XX:G1MaxNewSizePercent=80 -XX:G1MixedGCLiveThresholdPercent=35 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -Dusing.aikars.flags=mcflags.emc.gs -jar serverjars-1.jar --nogui
-#sleep 60
-#tmux send-keys -t ftb mv unload resource_nether C-m
-#tmux send-keys -t ftb mvconfirm C-m
-#rm -Rv /home/minecraft/ftb/resource_nether
-#tmux send-keys -t ftb mv create resource_nether nether C-m
-# tmux send-keys -t rr say\ Backup\ Is\ Complete C-m
+# Copy backup to iolite for later uploading.
+rsync -av --progress /mnt/cyndaquil/CC_Backup/crazycraft-typhlosion_"$(date +%F)".7z jesse@iolite:/mnt/Backup/Minecraft/CC_Backup/
 echo "Done"

@@ -22,7 +22,7 @@ date -R >> /var/log/minecraft_backup/minecraft_backup.log
 
 #tmux send-keys -t vanilla say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
 #tmux send-keys -t lobby say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
-tmux send-keys -t crazycraft say\ SERVER\ GOING\ DOWN\ FOR\ BACKUPS\ C-m
+tmux send-keys -t crazycraft say\ SERVER\ GOING\ DOWN\ FOR\ BACKUPS C-m
 tmux send-keys -t crazycraft say\ WARNING:\ SHUTTING\ DOWN\ SERVER\ IN\ 5 C-m
 sleep 60
 

@@ -7,9 +7,8 @@
 
 echo "Backing up Player Data"
 echo "Informing players of Player Data Backup"
-#tmux send-keys -t crazycraft say\ Saving\ Player\ Data C-m
-#tmux send-keys -t crazycraft say\ Hold\ On\ To\ Your\ Butts C-m
-tmux send-key -t crazycraft say\ Testing\ Player\ Backup\ Script C-m
+tmux send-keys -t crazycraft say\ Saving\ Player\ Data C-m
+tmux send-keys -t crazycraft say\ Hold\ On\ To\ Your\ Butts C-m
 tmux send-keys -t crazycraft save-all C-m
 sleep 10
 sync

@@ -24,4 +24,5 @@ sleep 10
 sync
 
 # Now clean up
-rm -Rvf /mnt/cyndaquil/Minecraft_Compress/playerdata-$(date +"%T" | sed 's/:/_/g')
+echo "Cleaning up"
+rm -Rvf /mnt/cyndaquil/Minecraft_Compress/*

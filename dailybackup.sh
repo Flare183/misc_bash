@@ -6,7 +6,7 @@
 # This copies all Player and World Data over to Minecraft_Compress and Compresses it and throw it into CC_Backup just like the other script
 
 # Main Vars
-timestamp=$(date +"%T" | sed 's/:/_/g')
+timestamp=$(date +"%T %F" | sed 's/:/-/g' | sed 's/ /_/g')
 
 echo "Backing up Player And World Data"
 echo "Informing Players"
@@ -28,6 +28,9 @@ sync
 tar cvf - /mnt/cyndaquil/Minecraft_Compress/worlddata-"$timestamp" | pigz -p 6 > /mnt/cyndaquil/CC_Backup/worlddata/worlddata-"$timestamp".tar.gz
 sleep 10
 sync
+
+# Let's copy it to iolite
+rsync -av /mnt/cyndaquil/CC_Backup/worlddata/worlddata-"$timestamp".tar.gz jesse@iolite:/mnt/2TB/Minecraft/CC_Backup/worlddata-"$timestamp".tar.gz
 
 # Now clean up
 echo "Cleaning up"

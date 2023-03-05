@@ -42,21 +42,21 @@ megadrive_space=$(df /home/jesse/Mega | awk 'NR==2 { print $4 }')
 if [[ "$gdrive_space" -ge "$requiredspace" ]]; then
     # date --date="yesterday" +%F
     echo "Backing up to GDrive"
-    rsync --bwlimit=1M /mnt/2TB/Minecraft/CC_Backup/crazycraft-typhlosion_"$(date --date="yesterday" +%F)" /home/jesse/GDrive/Minecraft_Backups/
+    rsync --bwlimit=1M /mnt/2TB/Minecraft/CC_Backup/crazycraft-typhlosion_"$(date --date="yesterday" +%F)".7z /home/jesse/GDrive/Minecraft_Backups/
 else
     echo "Not enough space on GDrive!"
 fi
 
 if [[ "$onedrive_space" -ge "$requiredspace" ]]; then
     echo "Backing up to OneDrive"
-    rsync --bwlimit=1M /mnt/2TB/Minecraft/CC_Backup/crazycraft-typhlosion_"$(date --date="yesterday" +%F)" /home/jesse/OneDrive/Minecraft_Backups/
+    rsync --bwlimit=1M /mnt/2TB/Minecraft/CC_Backup/crazycraft-typhlosion_"$(date --date="yesterday" +%F)".7z /home/jesse/OneDrive/Minecraft_Backups/
 else
     echo "Not enough Space on OneDrive!"
 fi
 
 if [[ "$megadrive_space" -ge "$requiredspace" ]]; then
     echo "Backing up to Mega"
-    rsync -av --bwlimit=1M /mnt/2TB/Minecraft/CC_Backup/crazycraft-typlosion-"$(date --date="yesterday" +%F)" /home/jesse/Mega/Minecraft_Backups/
+    rsync -av --bwlimit=1M /mnt/2TB/Minecraft/CC_Backup/crazycraft-typlosion-"$(date --date="yesterday" +%F)".7z /home/jesse/Mega/Minecraft_Backups/
 else
     echo "Not enough space on Mega Drive"
 fi
